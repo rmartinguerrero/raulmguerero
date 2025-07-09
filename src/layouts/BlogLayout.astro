@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  publishDate: string;
+  featuredImage: string; 
+}
+
+const { title, description, publishDate, featuredImage } = Astro.props;
+ ---
+ <article class="card bg-base-100 shadow-md hover:shadow-xl transition-all">
+  <figure>
+    <img src={featuredImage} alt={`Imagen destacada de ${title}`} class="w-full h-auto object-cover rounded-t-md" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">{title}</h2>
+    <p class="text-sm text-gray-500">{description}</p>
+    <p class="text-xs text-gray-400 mt-2">Publicado el {publishDate}</p>
+  </div>
+</article>
