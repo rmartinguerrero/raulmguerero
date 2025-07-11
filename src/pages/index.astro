@@ -1,13 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-import "../styles/global.css";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const { title } = Astro.props;
 ---
 
-<Layout>
-	<h1>Inicio</h1>
-	<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas magnam perspiciatis placeat vero labore, hic ad autem similique architecto quod aliquid minima atque fugiat exercitationem excepturi omnis inventore iste voluptatum.</p>
-</Layout>
+<BaseLayout title="Inicio">
+  <h1 class="text-4xl font-bold text-center animate-fadeInUp mb-6">
+    { title } 
+  </h1>
+  <p class="text-center text-xs mx-auto text-gray-300">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt rem exercitationem similique ullam sapiente, ea voluptates eos molestiae culpa, eveniet tenetur, earum laborum assumenda ipsam quos aperiam nobis. Dolor, repellat!
+
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate repudiandae debitis similique quae nemo, accusamus accusantium quisquam doloribus quam odit laboriosam commodi cumque dolore reprehenderit ipsa illo delectus quas. Quam.
+  </p>
+</BaseLayout>

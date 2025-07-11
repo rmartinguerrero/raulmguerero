@@ -1,0 +1,29 @@
+---
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="bg-linear-to-t from-gray-900 to-black text-base-content font-sans flex flex-col min-h-screen">
+    <NavBar />
+
+    <!-- Contenido desplazado para evitar solapamiento -->
+    <div class="flex-grow ml-60">
+      <main class="container mx-auto px-6 py-10">
+        <h1 class="text-3xl text-gray-500 font-bold text-center mb-6 animate-fadeInUp">{title}</h1>
+        <div class="max-w-3xl mx-auto">
+          <slot />
+        </div>
+      </main>
+
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  publishDate: string;
+  featuredImage: string;
+  tags: string[];
+  url: string;
+}
+
+const { title, description, publishDate, featuredImage, tags, url } = Astro.props;
+---
+
+<article class="bg-gray-800 text-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
+  <a href={url}>
+    <img src={featuredImage} alt={title} class="w-full h-48 object-cover" />
+  </a>
+  <div class="p-4">
+    <h3 class="text-lg font-semibold">{title}</h3>
+    <p class="text-sm text-gray-400">{publishDate}</p>
+    <p class="mt-1 text-sm">{description}</p>
+    <div class="mt-2 flex gap-1 flex-wrap">
+      {tags.map(tag => (
+        <span class="text-xs px-2 py-1 bg-green-700 rounded-full">{tag}</span>
+      ))}
+    </div>
+  </div>
+</article>

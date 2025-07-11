@@ -1,20 +1,36 @@
 ---
-interface Props {
-  title: string;
-  description: string;
-  publishDate: string;
-  featuredImage: string; 
-}
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
 
-const { title, description, publishDate, featuredImage } = Astro.props;
- ---
- <article class="card bg-base-100 shadow-md hover:shadow-xl transition-all">
-  <figure>
-    <img src={featuredImage} alt={`Imagen destacada de ${title}`} class="w-full h-auto object-cover rounded-t-md" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">{title}</h2>
-    <p class="text-sm text-gray-500">{description}</p>
-    <p class="text-xs text-gray-400 mt-2">Publicado el {publishDate}</p>
-  </div>
-</article>
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Raúl M. Guerrero</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+
+  <body class="bg-gradient-to-t from-gray-800 to-black text-white font-sans min-h-screen flex flex-col">
+    <NavBar />
+
+    <div class="flex-grow ml-60">
+      <section class="w-full h-[50vh] flex items-center justify-center bg-gray-900 text-white shadow-inner">
+        <div class="text-center px-6 animate-fadeInUp">
+          <h1 class="text-4xl font-bold mb-2">{title}</h1>
+          <p class="text-gray-400 text-base max-w-xl mx-auto">
+            Aquí encontrarás mis últimos artículos, ideas y recursos sobre desarrollo, creatividad y tecnología.
+          </p>
+        </div>
+      </section>
+
+      <main class="px-6 py-10 max-w-7xl mx-auto">
+        <slot />
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

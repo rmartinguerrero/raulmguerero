@@ -1,0 +1,48 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import type { MarkdownPost } from '../../data/posts';
+
+const allPosts = await Astro.glob<MarkdownPost>('../../content/*.md');
+
+// Encuentra el post destacado
+const heroPost = allPosts.find(post => post.frontmatter.hero);
+const gridPosts = allPosts.filter(post => !post.frontmatter.hero);
+---
+
+<BlogLayout title="Blog">
+  {heroPost && (
+    <article class="mb-10 w-full h-[50vh] relative overflow-hidden rounded-lg shadow-lg">
+      <a href={heroPost.url.pathname}>
+        <img
+          src={heroPost.frontmatter.featuredImage}
+          alt={heroPost.frontmatter.title}
+          class="w-full h-full object-cover"
+        />
+      </a>
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 p-6">
+        <h2 class="text-2xl font-bold text-white">{heroPost.frontmatter.title}</h2>
+        <p class="text-sm text-gray-300">{heroPost.frontmatter.publishDate}</p>
+        <p class="mt-2 text-gray-200">{heroPost.frontmatter.description}</p>
+        <div class="mt-3 flex gap-2 flex-wrap">
+          {heroPost.frontmatter.tags.map(tag => (
+            <span class="text-xs px-2 py-1 bg-green-600 rounded-full">{tag}</span>
+          ))}
+        </div>
+      </div>
+    </article>
+  )}
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {gridPosts.map(post => (
+      <PostCard
+        title={post.frontmatter.title}
+        description={post.frontmatter.description}
+        publishDate={post.frontmatter.publishDate}
+        featuredImage={post.frontmatter.featuredImage}
+        tags={post.frontmatter.tags}
+        url={post.url.pathname}
+      />
+    ))}
+  </div>
+</BlogLayout
